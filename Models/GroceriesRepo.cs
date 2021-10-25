@@ -13,7 +13,7 @@ namespace MvcApp2.Models
                 new Groceries() { Id = 1, Name = "Coffee"},
                 new Groceries() { Id = 2, Name = "Chocolate"},
                 new Groceries() { Id = 3, Name = "Oil"},
-                new Groceries() { Id = 3, Name = "Sugar"},
+                new Groceries() { Id = 4, Name = "Sugar"},
             };
         }
         public List<Groceries> GetAll()
