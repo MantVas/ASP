@@ -11,8 +11,8 @@ namespace MvcApp2.Controllers
 {
     public class GroceriesController : Controller
     {
-        private GroceriesRepo _groceriesRepo;
-        public GroceriesController(GroceriesRepo groceriesRepo)
+        private IGroceriesRepo _groceriesRepo;
+        public GroceriesController(IGroceriesRepo groceriesRepo)
         {
             _groceriesRepo = groceriesRepo;
         }

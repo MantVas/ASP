@@ -1,15 +1,36 @@
 ﻿@{ ViewData["Title"] = "Groceries List"; }
 @model List<Groceries>
 <div class="text-center">
-    @foreach (var item in Model)
-    {
-        <p>@item.Id @item.Name <a href="@Url.Action("Delete", "Groceries", new { ID = item.Id })">Delete</a></p>
-    }
-    <hr />
     <form method="post" asp-controller="Groceries" asp-action="Create">
+        <label>ID:</label>
+        <input type="text" name="ID" size="1"/>
+
         <label>Name:</label>
         <input type="text" name="name" />
+
+        <label>Quantity:</label>
+        <input type="text" name="Quantity" />
+
         <input type="submit" value="Add Grocery" name="submit" />
     </form>
+    </br>
+    <div .justify-content-center>
+        <table class="table table-bordered">
+            <thead class="border-0">
+                <tr>
+                    <th>ID</th>
+                    <th>Grocery</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            @foreach (var item in Model)
+            {
+                <p></p>
+                <tr>
+                    <td>@item.Id</td><td>@item.Name</td><td>@item.Count</td><td><a href="@Url.Action("Delete", "Groceries", new { ID = item.Id })">Delete</a></td>
+                </tr>
+            }
+        </table>
+    </div>
 
 </div>

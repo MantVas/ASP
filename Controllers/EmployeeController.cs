@@ -1,18 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using MvcApp2.Models;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace MvcApp2.Controllers
 {
     public class EmployeeController : Controller
     {
-        private EmployeeRepo _employeeRepo;
-        public EmployeeController(EmployeeRepo employeeRepo)
+
+        private IEmployeeRepo _employeeRepo;
+        public EmployeeController(IEmployeeRepo employeeRepo)
         {
             _employeeRepo = employeeRepo;
         }

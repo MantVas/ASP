@@ -30,6 +30,9 @@ namespace MvcApp2
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddSingleton(new EmployeeRepo());
             services.AddSingleton(new GroceriesRepo());
+            services.AddSingleton<IGroceriesRepo, GroceriesRepo>();
+            services.AddSingleton<IEmployeeRepo, EmployeeRepo>();
+
 
         }
 
@@ -46,10 +49,6 @@ namespace MvcApp2
                 app.UseExceptionHandler("/Home/Error");
             }
             app.UseStaticFiles();
-            //app.UseStaticFiles(new StaticFileOptions
-            //{
-            //    FileProvider = new PhysicalFileProvider(Path.Combine(env.ContentRootPath, "MyStaticFolder")),
-            //});
             app.UseRouting();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
@@ -58,16 +57,6 @@ namespace MvcApp2
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
-
-            //app.UseRouting();
-            //app.UseEndpoints(endpoints =>
-            //{
-            //    endpoints.MapGet("/", async context => {
-            //        var text = "<h1 style=\"color: red\">Hello, Response!</h1>";
-            //        byte[] data = System.Text.Encoding.UTF8.GetBytes(text);
-            //        await context.Response.Body.WriteAsync(data, 0, data.Length);
-            //    });
-            //});
         }
     }
 }

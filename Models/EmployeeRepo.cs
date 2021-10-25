@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace MvcApp2.Models
 {
-    public class EmployeeRepo
+    public class EmployeeRepo : IEmployeeRepo
     {
         private static List<Employee> _employees;
         public EmployeeRepo()
@@ -14,10 +14,11 @@ namespace MvcApp2.Models
                 new Employee() { Id = 3, Name = "Petras"}
             };
         }
-        public List<Employee> GetAll()
+        public IEnumerable<Employee> GetAll()
         {
             return _employees;
         }
+
         public Employee GetById(int id)
         {
             return _employees.First(e => e.Id == id);
@@ -37,5 +38,6 @@ namespace MvcApp2.Models
         {
             _employees.Add(new Employee() { Id = _employees.Count + 1, Name = name });
         }
+
     }
 }

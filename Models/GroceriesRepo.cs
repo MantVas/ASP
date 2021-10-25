@@ -3,22 +3,23 @@ using System.Linq;
 
 namespace MvcApp2.Models
 {
-    public class GroceriesRepo
+    public class GroceriesRepo : IGroceriesRepo
     {
         private static List<Groceries> _groceries;
         public GroceriesRepo()
         {
             _groceries = new List<Groceries>(){
-                new Groceries() { Id = 1, Name = "Coffee"},
-                new Groceries() { Id = 2, Name = "Chocolate"},
-                new Groceries() { Id = 3, Name = "Oil"},
-                new Groceries() { Id = 4, Name = "Sugar"},
+                new Groceries() { Id = 1, Name = "Coffee", Count = 2},
+                new Groceries() { Id = 2, Name = "Chocolate",Count = 4},
+                new Groceries() { Id = 3, Name = "Oil",Count = 1},
+                new Groceries() { Id = 4, Name = "Sugar",Count = 5},
             };
         }
-        public List<Groceries> GetAll()
+        public IEnumerable<Groceries> GetAll()
         {
             return _groceries;
         }
+
         public Groceries GetById(int id)
         {
             return _groceries.First(e => e.Id == id);
@@ -36,7 +37,7 @@ namespace MvcApp2.Models
         }
         public void Create(string name)
         {
-            _groceries.Add(new Groceries() { Id = _groceries.Count + 1, Name = name });
+            _groceries.Add(new Groceries() { Id = _groceries.Count + 1, Name = name, Count = _groceries.Count + 1 });
         }
     }
 }
