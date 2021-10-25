@@ -28,7 +28,7 @@ namespace MvcApp2
         {
             services.AddLiveReload();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
-            //services.AddSingleton(new EmployeeRepo());
+            services.AddSingleton(new EmployeeRepo());
             services.AddSingleton(new GroceriesRepo());
 
         }
