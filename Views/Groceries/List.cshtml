@@ -21,11 +21,11 @@
                     <th>ID</th>
                     <th>Grocery</th>
                     <th>Quantity</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             @foreach (var item in Model)
             {
-                <p></p>
                 <tr>
                     <td>@item.Id</td><td>@item.Name</td><td>@item.Count</td><td><a href="@Url.Action("Delete", "Groceries", new { ID = item.Id })">Delete</a></td>
                 </tr>

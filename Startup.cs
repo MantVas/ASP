@@ -11,6 +11,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Westwind.AspNetCore.LiveReload;
+using Microsoft.EntityFrameworkCore;
 
 namespace MvcApp2
 {
@@ -31,9 +32,9 @@ namespace MvcApp2
             services.AddSingleton(new EmployeeRepo());
             services.AddSingleton(new GroceriesRepo());
             services.AddSingleton<IGroceriesRepo, GroceriesRepo>();
-            services.AddSingleton<IEmployeeRepo, EmployeeRepo>();
-
-
+            //services.AddSingleton<IEmployeeRepo, EmployeeRepo>();
+            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddScoped<IEmployeeRepo, EmployeeDbRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,8 +42,8 @@ namespace MvcApp2
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
                 app.UseLiveReload();
+                app.UseDeveloperExceptionPage();
             }
             else
             {
