@@ -12,6 +12,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Westwind.AspNetCore.LiveReload;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace MvcApp2
 {
@@ -28,6 +29,7 @@ namespace MvcApp2
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddLiveReload();
+            services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<AppDbContext>();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddSingleton(new EmployeeRepo());
             services.AddSingleton(new GroceriesRepo());
@@ -35,6 +37,9 @@ namespace MvcApp2
             //services.AddSingleton<IEmployeeRepo, EmployeeRepo>();
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IEmployeeRepo, EmployeeDbRepo>();
+            services.AddRazorPages().AddViewOptions(opts => {
+                opts.HtmlHelperOptions.ClientValidationEnabled = false;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,7 +54,16 @@ namespace MvcApp2
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+
+/*            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                var context = serviceScope.ServiceProvider.GetService<AppDbContext>();
+                context.Database.Migrate();
+            }*/
+
+
             app.UseStaticFiles();
+            app.UseAuthentication();
             app.UseRouting();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
@@ -57,6 +71,7 @@ namespace MvcApp2
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
         }
     }

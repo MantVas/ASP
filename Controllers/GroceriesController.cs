@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MvcApp2.Models;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace MvcApp2.Controllers
 {
+    [Authorize]
     public class GroceriesController : Controller
     {
         private IGroceriesRepo _groceriesRepo;

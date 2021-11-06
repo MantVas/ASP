@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MvcApp2.Models;
 
 namespace MvcApp2.Controllers
 {
+    
     public class EmployeeController : Controller
     {
 
