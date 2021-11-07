@@ -21,7 +21,7 @@
     },
     "resourceName": {
       "type": "string",
-      "defaultValue": "MvcApp220211027223235",
+      "defaultValue": "MvcApp220211106185033",
       "metadata": {
         "description": "Name of the main resource to be created by this template."
       }
